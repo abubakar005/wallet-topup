@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <!-- Creating gl table -->
+    <changeSet author="Abubakar" id="1">
+        <createTable tableName="gl">
+            <column name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="gl_code" type="VARCHAR(80)"/>
+            <column name="is_active" type="VARCHAR(1)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_on" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+            <column name="updated_on" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Creating customer table -->
+    <changeSet author="Abubakar" id="2">
+        <createTable tableName="customer">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="mobile_no" type="VARCHAR(80)"/>
+            <column name="identity_value" type="VARCHAR(80)"/>
+            <column name="gender" type="VARCHAR(1)"/>
+            <column name="is_active" type="VARCHAR(1)"/>
+            <column name="gl_code" type="INT">
+                <constraints nullable="true" foreignKeyName="fk_customer_gl" references="gl(id)"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_on" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+            <column name="updated_on" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Creating wallet table -->
+    <changeSet author="Abubakar" id="3">
+        <createTable tableName="wallet">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="wallet_type" type="INT"/>
+            <column name="title" type="VARCHAR(80)"/>
+            <column name="is_active" type="VARCHAR(1)"/>
+            <column name="customer_id" type="VARCHAR(255)">
+                <constraints nullable="false" foreignKeyName="fk_wallet_customer" references="customer(id)"/>
+            </column>
+            <column name="credit_balance" type="DECIMAL(16, 2)"/>
+            <column name="debit_balance" type="DECIMAL(16, 2)"/>
+            <column name="currency" type="VARCHAR(5)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_on" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+            <column name="updated_on" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Creating fee table -->
+    <changeSet author="Abubakar" id="4">
+        <createTable tableName="fee">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="amount" type="DECIMAL(16, 2)"/>
+            <column name="currency" type="VARCHAR(5)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_on" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+            <column name="updated_on" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Creating transaction table -->
+    <changeSet author="Abubakar" id="5">
+        <createTable tableName="transaction">
+            <column name="uuid" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="amount" type="DECIMAL(16, 2)"/>
+            <column name="payer_id" type="VARCHAR(255)">
+                <constraints nullable="false" foreignKeyName="fk_transaction_customer1" references="customer(id)"/>
+            </column>
+            <column name="payee_id" type="VARCHAR(255)">
+                <constraints nullable="false" foreignKeyName="fk_transaction_customer2" references="customer(id)"/>
+            </column>
+            <column name="fee_id" type="INT">
+                <constraints nullable="true" foreignKeyName="fk_transaction_fee" references="fee(id)"/>
+            </column>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="currency" type="VARCHAR(5)"/>
+            <column name="charge_id" type="VARCHAR(80)"/>
+            <column name="txn_detail" type="VARCHAR(100)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_on" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+            <column name="updated_on" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Creating table for record transactions requests -->
+    <changeSet author="Abubakar" id="6">
+        <createTable tableName="transaction_requests">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="request_data" type="VARCHAR(500)"/>
+            <column name="response_data" type="VARCHAR(500)"/>
+            <column name="error_code" type="INT"/>
+            <column name="error_msg" type="VARCHAR(80)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_on" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+            <column name="updated_on" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

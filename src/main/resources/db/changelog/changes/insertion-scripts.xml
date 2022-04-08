@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <!-- Creating GLs -->
+    <changeSet author="Abubakar" id="101">
+        <insert tableName="gl">
+            <column name="id" value="11111111"/>
+            <column name="is_active" value="Y"/>
+            <column name="gl_code" value="11111111"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Abubakar" id="102">
+        <insert tableName="gl">
+            <column name="id" value="22222222"/>
+            <column name="is_active" value="Y"/>
+            <column name="gl_code" value="22222222"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+    <!-- Creating customers -->
+    <changeSet author="Abubakar" id="103">
+        <insert tableName="customer">
+            <column name="id" value="1002001"/>
+            <column name="is_active" value="Y"/>
+            <column name="mobile_no" value="1234-58754"/>
+            <column name="gender" value="M"/>
+            <column name="first_name" value="Harry"/>
+            <column name="last_name" value="Potter"/>
+            <column name="identity_value" value="12345-95748"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Abubakar" id="104">
+        <insert tableName="wallet">
+            <column name="id" value="2006001"/>
+            <column name="wallet_type" value="1"/>
+            <column name="title" value="Wallet Account"/>
+            <column name="is_active" value="Y"/>
+            <column name="customer_id" value="1002001"/>
+            <column name="credit_balance" value="0.00"/>
+            <column name="debit_balance" value="0.00"/>
+            <column name="currency" value="USD"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Abubakar" id="105">
+        <insert tableName="customer">
+            <column name="id" value="1002002"/>
+            <column name="is_active" value="Y"/>
+            <column name="mobile_no" value="1235-58254"/>
+            <column name="gender" value="F"/>
+            <column name="first_name" value="Charlotte"/>
+            <column name="last_name" value="Sophia"/>
+            <column name="identity_value" value="12333-53781"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Abubakar" id="106">
+        <insert tableName="wallet">
+            <column name="id" value="2006002"/>
+            <column name="wallet_type" value="1"/>
+            <column name="title" value="Wallet Account"/>
+            <column name="is_active" value="Y"/>
+            <column name="customer_id" value="1002002"/>
+            <column name="credit_balance" value="0.00"/>
+            <column name="debit_balance" value="0.00"/>
+            <column name="currency" value="USD"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+    <!-- Creating GL customers and their wallets -->
+    <changeSet author="Abubakar" id="107">
+        <insert tableName="customer">
+            <column name="id" value="11111111"/>
+            <column name="is_active" value="Y"/>
+            <column name="mobile_no" value="1111-1111"/>
+            <column name="first_name" value="AMOUNT-GL"/>
+            <column name="gl_code" value="11111111"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Abubakar" id="108">
+        <insert tableName="wallet">
+            <column name="id" value="2006003"/>
+            <column name="wallet_type" value="1"/>
+            <column name="title" value="GL Account"/>
+            <column name="is_active" value="Y"/>
+            <column name="customer_id" value="11111111"/>
+            <column name="credit_balance" value="100000.00"/>
+            <column name="debit_balance" value="0.00"/>
+            <column name="currency" value="USD"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Abubakar" id="109">
+        <insert tableName="customer">
+            <column name="id" value="22222222"/>
+            <column name="is_active" value="Y"/>
+            <column name="mobile_no" value="2222-2222"/>
+            <column name="first_name" value="FEE-GL"/>
+            <column name="gl_code" value="22222222"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Abubakar" id="110">
+        <insert tableName="wallet">
+            <column name="id" value="2006004"/>
+            <column name="wallet_type" value="1"/>
+            <column name="title" value="Fee GL Account"/>
+            <column name="is_active" value="Y"/>
+            <column name="customer_id" value="22222222"/>
+            <column name="credit_balance" value="0.00"/>
+            <column name="debit_balance" value="0.00"/>
+            <column name="currency" value="USD"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
