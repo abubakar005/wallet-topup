@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "42c7bf9b-ca86-435a-870f-60ac639c183d",
+		"name": "Top-Up",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Top-up API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"amount\": 100,\r\n  \"currency\": \"USD\",\r\n  \"charge_id\": \"1234566\",\r\n  \"customer\": {\r\n    \"id\": \"1002001\",\r\n    \"wallet_id\": \"2006001\"\r\n  },\r\n  \"fees\": {\r\n    \"amount\": 4.50,\r\n    \"currency\": \"USD\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/top-up",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"top-up"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
