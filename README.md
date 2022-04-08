@@ -13,6 +13,10 @@ This project is for wallet topUp where a GL to SVA transaction will be performed
 8. I have also created pipeline for auto deployment using the Github Actions and this project is deployed on the Heroku using the automation. It can be accessed at the link given below. It will be auto deployed if any change pushes to the repo in the main branch
 9. I am saving all the transactions requests in the transaction_requests table for history with error code and error message
 10. I have attached a postman collection as well in the project directory (/postman) for this topUp API
+11. Added docker file for this project, one can create image and run that image using the below commands
+
+i) docker build --tag=wallet-topup:latest .
+ii) docker run -p8081:8080 wallet-topup:latest
 
 #Assumptions
 charge_id is valid and unique otherwise it will throw an error
